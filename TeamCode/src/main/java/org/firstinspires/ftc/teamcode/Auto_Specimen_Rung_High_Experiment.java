@@ -115,7 +115,11 @@ public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
         robot.turnRight(150, 10);
         delay(1);
         robot.strafe(65,15);
-        robot.move(15,15);
+        robot.move(8,15);
+        robot.leftArmMotorDeg(15, -1500, 0);
+        delay(2);
+        robot.rightArmMotorDeg(3, 100, 0);
+        delay(1);
 
 
 
