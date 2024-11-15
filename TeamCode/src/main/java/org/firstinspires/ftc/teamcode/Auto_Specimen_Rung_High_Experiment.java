@@ -97,7 +97,7 @@ public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
         robot.rightArmMotorDeg(1, -100, 0);
     }
 
-    public void hangSpecimenOne() {
+    public void hangSpecimenOne() { // Update Test
         robot.leftArmMotorDeg(15, 1050, 0);
         delay(2);
         robot.move(28, 15);
