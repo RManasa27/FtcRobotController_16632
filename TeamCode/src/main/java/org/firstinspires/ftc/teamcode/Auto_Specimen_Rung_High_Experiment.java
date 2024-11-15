@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Driver Station OpMode list, or add a @Disabled annotation to prevent this OpMode from being
  * added to the Driver Station.
  */
-@Autonomous(name="Self Destruct Again", group="Training")
+@Autonomous(name="This May Explode", group="Training")
 public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -115,8 +115,24 @@ public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
         robot.turnRight(150, 10);
         delay(1);
         robot.strafe(65,15);
-        robot.move(15,15);
-
+        robot.move(12,15);
+        robot.leftArmMotorDeg(4,-1650, 0);
+        robot.rightArmMotorDeg(2, 100, 0);
+        robot.rightHand.setPosition(0.37);
+        delay(1);
+        robot.rightArmMotorDeg(2, 100, 0);
+        delay(1);
+        robot.leftArmMotorDeg(4, 450, 0);
+        delay(1.5);
+        robot.move(-12);
+        robot.strafe(-65);
+        robot.turnLeft(150, 10);
+        robot.leftArmMotorDeg(3, 1200, 0);
+        delay(2);
+        robot.move(10, 14);
+        robot.rightArmMotorDeg(3, 105, 0);
+        delay(1);
+        robot.rightArmMotorDeg(3, -105, 0);
 
 
 
