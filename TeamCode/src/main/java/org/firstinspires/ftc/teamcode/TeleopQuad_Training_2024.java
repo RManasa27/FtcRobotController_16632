@@ -28,6 +28,9 @@ public class TeleopQuad_Training_2024 extends OpMode {
     int sliderPos = 0;
     int armPos = 0;
 
+    int rightClimbPos = 0;
+    int leftClimbPos = 0;
+
     double SPEED_CONTROL = 1.0;
     double ARM_SPEED = 0.8;
     double SLIDER_SPEED = 0.8;
@@ -148,17 +151,21 @@ public class TeleopQuad_Training_2024 extends OpMode {
         if (Math.abs(deltaRightClimb) > 0.1) {
             robot.rightClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             robot.rightClimbArm.setPower(deltaRightClimb);
+            robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.leftClimbArm.setPower(deltaRightClimb);
         }
         else {
-            armPos = robot.rightClimbArm.getCurrentPosition();
-            robot.rightClimbArm.setTargetPosition(armPos);
+            rightClimbPos = robot.rightClimbArm.getCurrentPosition();
+            robot.rightClimbArm.setTargetPosition(rightClimbPos);
             robot.rightClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightClimbArm.setPower(ARM_SPEED);
+
+            leftClimbPos = robot.leftClimbArm.getCurrentPosition();
+            robot.leftClimbArm.setTargetPosition(leftClimbPos);
+            robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.leftClimbArm.setPower(ARM_SPEED);
         }
 
-        // Climbing Arms
-        double climbPower = gamepad2.left_trigger - gamepad1.right_trigger;
-        robot.rightClimbArm.setPower(climbPower);
 
 
         //close grasper
