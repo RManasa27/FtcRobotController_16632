@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Driver Station OpMode list, or add a @Disabled annotation to prevent this OpMode from being
  * added to the Driver Station.
  */
-@Autonomous(name="Self Destruct Again", group="Training")
+@Autonomous(name="Auto Disassemble", group="Training")
 public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -98,24 +98,52 @@ public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
     }
 
     public void hangSpecimenOne() { // Update Test again
-        robot.leftArmMotorDeg(15, 1050, 0);
-        delay(2);
-        robot.move(28, 15);
-        delay(2);
-        robot.rightArmMotorDeg(3, -105, 0);
+        //SPECIMIN 1
+        robot.leftArmMotorDeg(1, 1050, 0);
         delay(1);
-        robot.leftArmMotorDeg(15, 150,0);
-        delay(2);
-        robot.rightArmMotorDeg(3, 105, 0);
+        robot.move(31, 0.5);
+        delay(1);
+        robot.rightArmMotorDeg(1, -105, 0);
+        robot.leftArmMotorDeg(1, 150,0);
+        delay(1);
+        robot.rightArmMotorDeg(1, 105, 0);
         delay(1);
         robot.rightHand.setPosition(.73);
+        //MOVE TO OBS ZONE
         delay(1);
-        robot.move(-10,15);
+        robot.move(-8,0.5);
+        delay(0.5);
+        robot.turnRight(155, 0.7);
         delay(1);
-        robot.turnRight(150, 10);
+        robot.leftArmMotorDeg(1, -1450, 0);
+        robot.strafe(64,0.5);
+        //PICKUP SPECIMIN 2
+        delay(2);
+        robot.move(10,0.3);
+        delay(2);
+        robot.rightHand.setPosition(.37);
+        //MOVE TO CHAMBERS
         delay(1);
-        robot.strafe(65,15);
-        robot.move(15,15);
+        robot.leftArmMotorDeg(1, 450, 0);
+        robot.move(-8, 0.5);
+        robot.turnRight(155, 0.5);
+        robot.leftArmMotorDeg(1, 850, 0);
+        delay(1);
+        robot.strafe(61, 0.5);
+        //CHAMBER APPROACH AND SCORE
+        delay(1);
+        robot.move(16, 0.7);
+        robot.rightArmMotorDeg(1, -105, 0);
+        robot.leftArmMotorDeg(1, 200,0);
+        delay(1);
+        robot.rightArmMotorDeg(1, 105, 0);
+        robot.move(-8, .7);
+
+        robot.rightHand.setPosition(.73);
+        //FINAL MOVE TO OBS ZONE
+
+
+
 
 
 

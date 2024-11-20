@@ -10,7 +10,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Vroom Vroom", group="Training")
+@TeleOp(name="Dale a tu cuerpo alegría Macarena\n" +
+        "Que tu cuerpo es pa' darle alegría y cosa buena\n" +
+        "Dale a tu cuerpo alegría, Macarena\n" +
+        "Hey Macarena, ay", group="Training")
 //@Disabled
 public class TeleopQuad_Training_2024 extends OpMode {
 
@@ -89,6 +92,15 @@ public class TeleopQuad_Training_2024 extends OpMode {
 
         robot.driveStrafer(leftX, leftY, rightX);
 
+        if (gamepad2.dpad_up) {
+            SPEED_CONTROL = 1;
+        }
+        if (gamepad2.dpad_right) {
+            SPEED_CONTROL = 0.5;
+        }
+        if (gamepad2.dpad_down) {
+            SPEED_CONTROL = 0.25;
+        }
         if (gamepad1.dpad_up) {
             SPEED_CONTROL = 1;
         }
@@ -156,7 +168,7 @@ public class TeleopQuad_Training_2024 extends OpMode {
         //close grasper grad
         if (gamepad1.right_bumper) {
             //leftHandPos+= 0.01;
-            rightHandPos-= 0.01;
+            rightHandPos-= 0.03;
         }
         //open grasper
         //left hand .49
@@ -164,7 +176,7 @@ public class TeleopQuad_Training_2024 extends OpMode {
         //open grasper grad
         if (gamepad1.left_bumper) {
             //leftHandPos-= 0.02;
-            rightHandPos+= 0.02;
+            rightHandPos+= 0.03;
         }
 
 

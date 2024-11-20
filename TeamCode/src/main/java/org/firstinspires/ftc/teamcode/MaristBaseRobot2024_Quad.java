@@ -89,8 +89,8 @@ public class MaristBaseRobot2024_Quad {
     private double     COUNTS_PER_INCH               = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     private double COUNTS_PER_DEGREE                 = COUNTS_PER_MOTOR_REV / 360;
-    private double     DRIVE_SPEED                   = 0.6;
-    private double     TURN_SPEED                    = 0.5;
+    private double     DRIVE_SPEED                   = 1;
+    private double     TURN_SPEED                    = 1;
 
     // Local OpMode members
     HardwareMap hwMap = null;
@@ -242,8 +242,8 @@ public class MaristBaseRobot2024_Quad {
             period.reset();
             leftFront.setPower(Math.abs(speed));
             rightFront.setPower(Math.abs(speed));
-        leftRear.setPower(Math.abs(speed));
-        rightRear.setPower(Math.abs(speed));
+            leftRear.setPower(Math.abs(speed));
+            rightRear.setPower(Math.abs(speed));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -257,16 +257,16 @@ public class MaristBaseRobot2024_Quad {
             }
 
             // Stop all motion;
-            leftFront.setPower(0);
-            rightFront.setPower(0);
-            leftRear.setPower(0);
-            rightRear.setPower(0);
+            //leftFront.setPower(0);
+            //rightFront.setPower(0);
+            //leftRear.setPower(0);
+            //rightRear.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             //  sleep(250);   // optional pause after each move
         }
@@ -340,16 +340,16 @@ public class MaristBaseRobot2024_Quad {
             }
 
             // Stop all motion;
-            leftFront.setPower(0);
-            rightFront.setPower(0);
-            leftRear.setPower(0);
-            rightRear.setPower(0);
+            //leftFront.setPower(0);
+            //rightFront.setPower(0);
+            //leftRear.setPower(0);
+            //rightRear.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             //  sleep(250);   // optional pause after each move
         }
@@ -423,16 +423,16 @@ public class MaristBaseRobot2024_Quad {
             }
 
             // Stop all motion;
-            leftFront.setPower(0);
-            rightFront.setPower(0);
-            leftRear.setPower(0);
-            rightRear.setPower(0);
+            //leftFront.setPower(0);
+            //rightFront.setPower(0);
+            //leftRear.setPower(0);
+            //rightRear.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            //rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             //  sleep(250);   // optional pause after each move
         }
