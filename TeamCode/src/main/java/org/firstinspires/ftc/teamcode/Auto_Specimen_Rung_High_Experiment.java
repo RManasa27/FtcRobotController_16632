@@ -138,7 +138,6 @@ public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
         delay(1);
         robot.rightArmMotorDeg(1, 105, 0);
         robot.move(-8, .7);
-
         robot.rightHand.setPosition(.73);
         //FINAL MOVE TO OBS ZONE
 
