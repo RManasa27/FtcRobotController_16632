@@ -20,12 +20,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * This file contains a minimal example of a Linear "OpMode". An OpMode is a 'program' that runs
@@ -38,8 +33,8 @@ import com.qualcomm.robotcore.util.Range;
  * added to the Driver Station.
  *
  */
-@Autonomous(name="Left Bucket Low", group="Training")
-public class Auto_Left_Bucket_Low extends LinearOpMode {
+@Autonomous(name="Scoop Low", group="Training")
+public class Auto_Bucket_Low extends LinearOpMode {
 
     /* Declare OpMode members. */
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();   
@@ -86,8 +81,7 @@ public class Auto_Left_Bucket_Low extends LinearOpMode {
     }
 
     public void driveToBuckets() {
-        robot.leftArmMotorDeg(0.8,100, 5);
-        robot.rightArmMotorDeg(0.0, 0.0, 0);
+        robot.leftArmMotorDeg(1, 1050, 0);
         robot.move(25, 0.5);
         robot.turnLeft(90, 0.5);
         robot.move(24, 0.5);
