@@ -198,11 +198,12 @@ public class    TeleopQuad_Training_2024 extends OpMode {
             sliderPos = -3050;
         }
 
-
+        telemetry.addData("Say", "Robot Ready");    //
         telemetry.addData("Right hand:", rightHandPos);
         telemetry.addData("SliderPos", sliderPos);
         telemetry.addData("Speed:", SPEED_CONTROL);
-        telemetry.addData("Shoulder", deltaArmPos);
+        telemetry.addData("Right Shoulder:", rightClimbPos);
+        telemetry.addData("Left Shoulder:", leftClimbPos);
 
        // robot.leftHand.setPosition(leftHandPos);
         robot.rightHand.setPosition(rightHandPos);
@@ -211,7 +212,6 @@ public class    TeleopQuad_Training_2024 extends OpMode {
 
 
 
-        telemetry.addData("Say", "Robot Ready");    //
 
     }
 
