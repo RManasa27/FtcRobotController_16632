@@ -20,12 +20,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * This file contains a minimal example of a Linear "OpMode". An OpMode is a 'program' that runs
@@ -38,8 +33,8 @@ import com.qualcomm.robotcore.util.Range;
  * added to the Driver Station.
  *
  */
-@Autonomous(name="Left Bucket High", group="Training")
-public class Auto_Left_Bucket_High extends LinearOpMode {
+@Autonomous(name="Scoop High", group="Training")
+public class Auto_Bucket_High extends LinearOpMode {
 
     /* Declare OpMode members. */
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();
@@ -56,7 +51,10 @@ public class Auto_Left_Bucket_High extends LinearOpMode {
         robot.init(hardwareMap);
 
         // Close
-        robot.rightHand.setPosition(0.7);
+        robot.rightHand.setPosition(0.37);
+
+        //Keep Climb Arms equal
+        robot.leftClimbArm = robot.rightClimbArm;
 
         robot.rightArmMotorDeg(0, 0, 0);
         ;//rightHandPos = nge.clip(rightHandPos, 0.52, 0.8);
@@ -70,7 +68,7 @@ public class Auto_Left_Bucket_High extends LinearOpMode {
         // Autonomous Code - Call Methods Here
         waitForStart();
         driveToBucketsHigh();
-        putInBucketLow();
+        putInBucketHigh();
 
         telemetry.addData("Status:", "Auto Finished");
         telemetry.update();
@@ -84,22 +82,47 @@ public class Auto_Left_Bucket_High extends LinearOpMode {
     }
 
     public void driveToBucketsHigh() {
-        robot.leftArmMotorDeg(0.8,80, 5);
+        robot.leftArmMotorDeg(1, 1600, 0);
         robot.move(12, 0.5);
         robot.turnLeft(90, 0.5);
         robot.move(12, 0.5);
     }
 
-    public void putInBucketLow() {
-        robot.leftArmMotorDeg(0.8, 1300, 4);
-        robot.rightArmMotorDeg(0.7, -2210, 2);
-        robot.leftHand.setPosition(0.5);
-        robot.wristHand.setPosition(0.592);
-        robot.leftHand.setPosition(0.36);
-        robot.rightHand.setPosition(.69);
+    public void putInBucketHigh() {
+        robot.leftArmMotorDeg(1, 1600, 0);
         delay(1);
-        robot.rightArmMotorDeg(0.7, 2210, 2);
-        robot.leftArmMotorDeg(0.7, -1300, 4);
+        robot.rightArmMotorDeg(0.6, -3050, 0);
+        robot.rightHand.setPosition(.73);
+        delay(1);
+        robot.rightArmMotorDeg(0.6, 3050, 0);
+        //MOVE TO 1ST HASH
+        robot.leftArmMotorDeg(1, -1850, 0);
+        robot.strafe(-6, 0.5);
+        robot.turnRight(90,0.6);
+        robot.move(10, 0.6);
+        //PICKUP SAMPLE
+        robot.rightHand.setPosition(.37);
+        //RETURN TO BUCKET
+        robot.leftArmMotorDeg(1, 1850, 0);
+        robot.move(-6, 0.5);
+        robot.turnLeft(45, 0.5);
+        //RAISE AND EXTEND ARM
+        robot.leftArmMotorDeg(1, -1850, 0);
+        delay(1);
+        robot.rightArmMotorDeg(0.6, -3050, 0);
+        delay(0.5);
+        robot.rightHand.setPosition(.73);
+        delay(1);
+        robot.rightArmMotorDeg(0.6, 3050, 0);
+        //MOVE TO ASCENT ZONE
+        robot.turnRight(45, 0.5);
+        delay(1);
+        robot.strafe(-20, 0.7);
+        delay(1);
+        robot.move(-6, 0.5);
+        robot.leftArmMotorDeg(1, 800, 0);
+
+
     }
 
 
