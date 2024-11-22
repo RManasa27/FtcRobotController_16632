@@ -64,6 +64,7 @@ public class MaristBaseRobot2024_Quad {
     public DcMotor rightArm    = null;
     public DcMotor leftArm     = null;
     public DcMotor rightClimbArm = null;
+    public DcMotor leftClimbArm = null;
     public Servo rightHand    = null;
     public Servo leftHand   = null;
     public Servo wristHand = null;
@@ -114,6 +115,7 @@ public class MaristBaseRobot2024_Quad {
         leftArm      = hwMap.dcMotor.get("leftarm");
         rightArm     = hwMap.dcMotor.get("rightarm");
         rightClimbArm = hwMap.dcMotor.get("rightclimbarm");
+        leftClimbArm = hwMap.dcMotor.get("leftclimbarm");
 
 
         leftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
