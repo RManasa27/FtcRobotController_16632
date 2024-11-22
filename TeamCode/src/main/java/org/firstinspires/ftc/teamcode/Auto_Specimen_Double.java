@@ -111,7 +111,7 @@ public class Auto_Specimen_Double extends LinearOpMode {
         delay(0.5);
         robot.turnRight(155, 0.7);
         delay(1);
-        robot.leftArmMotorDeg(1, -1450, 0);
+        robot.leftArmMotorDeg(1, -1500, 0);
         robot.strafe(64,0.5);
         //PICKUP SPECIMIN 2
         delay(2);
@@ -120,7 +120,7 @@ public class Auto_Specimen_Double extends LinearOpMode {
         robot.rightHand.setPosition(.37);
         //MOVE TO CHAMBERS
         delay(1);
-        robot.leftArmMotorDeg(1, 450, 0);
+        robot.leftArmMotorDeg(1, 500, 0);
         robot.move(-8, 0.5);
         robot.turnRight(155, 0.5);
         robot.leftArmMotorDeg(1, 850, 0);

@@ -163,27 +163,27 @@ public class    TeleopQuad_Training_2024 extends OpMode {
             robot.leftClimbArm.setPower(ARM_SPEED);
         }
 
-        //HOLD CODE FOR CLIMB ARMS
-        robot.rightClimbArm = robot.leftClimbArm;
 
 
 
-        //close grasper
-        //left hand .22
-        //right hand .79
 
         //close grasper grad
         if (gamepad1.right_bumper) {
-            //leftHandPos+= 0.01;
             rightHandPos-= 0.03;
         }
-        //open grasper
-        //left hand .49
-        //right hand .52
+
+        if (gamepad2.b) {
+            rightHandPos-= 0.03;
+        }
+
+
         //open grasper grad
         if (gamepad1.left_bumper) {
-            //leftHandPos-= 0.02;
             rightHandPos+= 0.03;
+        }
+
+        if (gamepad2.x) {
+            rightHandPos+=0.03;
         }
 
 
