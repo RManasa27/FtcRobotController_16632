@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Chicken", group="Training")
 //@Disabled
-public class TeleopQuad_Training_2024 extends OpMode {
+public class    TeleopQuad_Training_2024 extends OpMode {
 
     // Create instance of MaristBaseRobot2024
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();
@@ -162,6 +162,9 @@ public class TeleopQuad_Training_2024 extends OpMode {
             robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.leftClimbArm.setPower(ARM_SPEED);
         }
+
+        //HOLD CODE FOR CLIMB ARMS
+        robot.rightClimbArm = robot.leftClimbArm;
 
 
 
