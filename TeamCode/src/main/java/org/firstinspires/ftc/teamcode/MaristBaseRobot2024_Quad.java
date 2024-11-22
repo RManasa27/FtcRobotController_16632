@@ -541,7 +541,108 @@ public class MaristBaseRobot2024_Quad {
         }
 
     }
-    
+
+    public void rightClimbArmMotorDeg(double speed,
+                                 double deg,
+                                 double timeoutS) {
+        int target;
+
+        rightClimbArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        rightClimbArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Set to Limit of DRIVE_SPEED
+        if (Math.abs(speed) > DRIVE_SPEED) {
+            speed = DRIVE_SPEED; //
+        }
+
+        // Ensure that the opmode is still active
+        //if (opModeIsActive()) {
+        if (true) {       // Swapped out to include in MaristBaseRobot
+
+            // Determine new target position, and pass to motor controller
+            target = rightClimbArm.getCurrentPosition() + (int)(deg * COUNTS_PER_DEGREE);
+            rightClimbArm.setTargetPosition(target);
+
+            // Turn On RUN_TO_POSITION
+            rightClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            period.reset();
+            rightClimbArm.setPower(Math.abs(speed));
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop.  This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+            while ((period.seconds() < timeoutS) &&
+                    rightClimbArm.isBusy()) {
+                // Wait for Sequence to complete
+            }
+
+            // Stop all motion: Comment out if you want Motor to hold position
+            //rightArm.setPower(0);
+
+            // Turn off RUN_TO_POSITION: Comment out if you want Motor to hold position
+            //rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            //  sleep(250);   // optional pause after each move
+        }
+
+    }
+
+    public void LeftArmMotorDeg(double speed,
+                                 double deg,
+                                 double timeoutS) {
+        int target;
+
+        leftClimbArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftClimbArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Set to Limit of DRIVE_SPEED
+        if (Math.abs(speed) > DRIVE_SPEED) {
+            speed = DRIVE_SPEED; //
+        }
+
+        // Ensure that the opmode is still active
+        //if (opModeIsActive()) {
+        if (true) {       // Swapped out to include in MaristBaseRobot
+
+            // Determine new target position, and pass to motor controller
+            target = leftClimbArm.getCurrentPosition() + (int)(deg * COUNTS_PER_DEGREE);
+            leftClimbArm.setTargetPosition(target);
+
+            // Turn On RUN_TO_POSITION
+            leftClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            period.reset();
+            leftClimbArm.setPower(Math.abs(speed));
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop.  This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+            while ((period.seconds() < timeoutS) &&
+                    leftClimbArm.isBusy()) {
+                // Wait for Sequence to complete
+            }
+
+            // Stop all motion: Comment out if you want Motor to hold position
+            //rightArm.setPower(0);
+
+            // Turn off RUN_TO_POSITION: Comment out if you want Motor to hold position
+            //rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            //  sleep(250);   // optional pause after each move
+        }
+
+    }
     // For 2020: Add Commands from API for Engineering Java Robot Simulation
     // These are deprecated for 2022
     public void moveDistance(double inches, double speed) {
