@@ -10,10 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Dale a tu cuerpo alegría Macarena\n" +
-        "Que tu cuerpo es pa' darle alegría y cosa buena\n" +
-        "Dale a tu cuerpo alegría, Macarena\n" +
-        "Hey Macarena, ay", group="Training")
+@TeleOp(name="Chicken", group="Training")
 //@Disabled
 public class TeleopQuad_Training_2024 extends OpMode {
 
@@ -145,14 +142,14 @@ public class TeleopQuad_Training_2024 extends OpMode {
             robot.rightArm.setPower(SLIDER_SPEED);
         }
 
-        //RightClimbArm
+        //ClimbArms
         double deltaRightClimb = gamepad2.left_trigger - gamepad2.right_trigger;
 
         if (Math.abs(deltaRightClimb) > 0.1) {
             robot.rightClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             robot.rightClimbArm.setPower(deltaRightClimb);
             robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.leftClimbArm.setPower(deltaRightClimb);
+            robot.leftClimbArm.setPower(-deltaRightClimb);
         }
         else {
             rightClimbPos = robot.rightClimbArm.getCurrentPosition();
