@@ -24,10 +24,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -41,7 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * added to the Driver Station.
  */
 @Autonomous(name="Auto Disassemble", group="Training")
-public class Auto_Specimen_Rung_High_Experiment extends LinearOpMode {
+public class Auto_Specimen_Double extends LinearOpMode {
 
     /* Declare OpMode members. */
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();
