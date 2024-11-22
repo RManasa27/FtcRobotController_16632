@@ -1,6 +1,6 @@
 //package org.firstinspires.ftc.teamcode;
 
-//public class Auto_Specimen_Rung_High_Experiment {
+//public class Auto_Specimen_Double {
 //}
 /*
 Copyright 2024 FIRST Tech Challenge Team DEMO04
