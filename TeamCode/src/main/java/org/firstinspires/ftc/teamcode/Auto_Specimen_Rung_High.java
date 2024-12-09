@@ -94,30 +94,22 @@ public class Auto_Specimen_Rung_High extends LinearOpMode {
     }
 
     public void hangSpecimenOne() {
-        robot.leftArmMotorDeg(15, 1050, 0);
-        delay(2);
-        robot.move(28, 15);
-        delay(2);
-        robot.rightArmMotorDeg(3, -105, 0);
+        robot.leftArmMotorDeg(1, 1050, 0);
         delay(1);
-        robot.leftArmMotorDeg(15, 150,0);
-        delay(2);
-        robot.rightArmMotorDeg(3, 105, 0);
+        robot.move(34, 0.5);
         delay(1);
-        robot.rightHand.setPosition(.73);
+        robot.rightArmMotorDeg(1, -115, 0);
+        delay(0.5);
+        robot.move(-8,0.5);
         delay(1);
-        robot.move(-10,15);
-        delay(1);
-        robot.turnRight(150, 10);
-        delay(1);
-        robot.strafe(60,15);
-        robot.move(15,15);
-
-
+        robot.rightHand.setPosition(.58);
+        robot.rightArmMotorDeg(1, 115, 0);
 
 
 
     }
+
+
 
     public void delay(double t) { // Imitates the Arduino delay function
         runtime.reset();

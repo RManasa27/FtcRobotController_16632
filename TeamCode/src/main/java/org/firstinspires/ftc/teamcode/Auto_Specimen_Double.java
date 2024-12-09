@@ -52,7 +52,6 @@ public class Auto_Specimen_Double extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-
         robot.rightHand.setPosition(.37);
         // Hold Sample
 
@@ -91,27 +90,28 @@ public class Auto_Specimen_Double extends LinearOpMode {
         robot.turnLeft(160, 5);
         robot.move(3,10);
         robot.rightArmMotorDeg(1, -100, 0);
+
     }
 
     public void hangSpecimenOne() { // Update Test again
         //SPECIMIN 1
         robot.leftArmMotorDeg(1, 1050, 0);
         delay(1);
-        robot.move(31, 0.5);
+        robot.move(34, 0.5);
         delay(1);
-        robot.rightArmMotorDeg(1, -105, 0);
-        robot.leftArmMotorDeg(1, 150,0);
+        robot.rightArmMotorDeg(1, -115, 0);
+        delay(0.5);
+        robot.move(-8,0.5);
         delay(1);
-        robot.rightArmMotorDeg(1, 105, 0);
-        delay(1);
-        robot.rightHand.setPosition(.73);
+        robot.rightHand.setPosition(.58);
+        robot.rightArmMotorDeg(1, 115, 0);
         //MOVE TO OBS ZONE
         delay(1);
-        robot.move(-8,0.5);
+        robot.move(-6,0.5);
         delay(0.5);
         robot.turnRight(155, 0.7);
         delay(1);
-        robot.leftArmMotorDeg(1, -1500, 0);
+        robot.leftArmMotorDeg(1, -1365, 0);
         robot.strafe(64,0.5);
         //PICKUP SPECIMIN 2
         delay(2);
@@ -121,20 +121,20 @@ public class Auto_Specimen_Double extends LinearOpMode {
         //MOVE TO CHAMBERS
         delay(1);
         robot.leftArmMotorDeg(1, 500, 0);
-        robot.move(-8, 0.5);
-        robot.turnRight(155, 0.5);
-        robot.leftArmMotorDeg(1, 850, 0);
+        robot.move(-10, 0.5);
+        robot.turnRight(150, 0.5);
+        robot.leftArmMotorDeg(1, 800, 0);
         delay(1);
-        robot.strafe(61, 0.5);
+        robot.strafe(62, 0.5);
         //CHAMBER APPROACH AND SCORE
         delay(1);
-        robot.move(16, 0.7);
-        robot.rightArmMotorDeg(1, -105, 0);
-        robot.leftArmMotorDeg(1, 200,0);
-        delay(1);
-        robot.rightArmMotorDeg(1, 105, 0);
-        robot.move(-8, .7);
-        robot.rightHand.setPosition(.73);
+        robot.move(20, 0.7);
+        robot.rightArmMotorDeg(1, -125, 0);
+        delay(0.2);
+        robot.move(-8, 0.5);
+        robot.rightHand.setPosition(.37);
+        robot.rightArmMotorDeg(1, 115, 0);
+
         //FINAL MOVE TO OBS ZONE
 
 

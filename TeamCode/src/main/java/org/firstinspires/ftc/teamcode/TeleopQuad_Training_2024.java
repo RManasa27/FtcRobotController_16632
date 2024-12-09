@@ -204,6 +204,7 @@ public class    TeleopQuad_Training_2024 extends OpMode {
         telemetry.addData("Speed:", SPEED_CONTROL);
         telemetry.addData("Right Shoulder:", rightClimbPos);
         telemetry.addData("Left Shoulder:", leftClimbPos);
+        telemetry.addData("Mid Arm:", armPos);
 
        // robot.leftHand.setPosition(leftHandPos);
         robot.rightHand.setPosition(rightHandPos);
