@@ -82,39 +82,25 @@ public class Auto_Bucket_High extends LinearOpMode {
 
 
     public void putInBucketHigh() {
-        robot.leftArmMotorDeg(0.7, 1600, 0);
+        robot.leftArmMotorDeg(1, 1550, 0);
+        robot.move(16, 0.6);
+        delay(1.5);
+        robot.rightArmMotorDeg(1, -750, 0);
         delay(1);
-        robot.rightArmMotorDeg(0.6, -3050, 0);
-        robot.rightHand.setPosition(.73);
-        delay(1);
-        robot.rightArmMotorDeg(0.6, 3050, 0);
-        //MOVE TO 1ST HASH
-        robot.leftArmMotorDeg(1, -1850, 0);
-        robot.strafe(-6, 0.5);
-        robot.turnRight(90,0.6);
-        robot.move(10, 0.6);
-        //PICKUP SAMPLE
-        robot.rightHand.setPosition(.37);
-        //RETURN TO BUCKET
-        robot.leftArmMotorDeg(1, 1850, 0);
-        robot.move(-6, 0.5);
-        robot.turnLeft(45, 0.5);
-        //RAISE AND EXTEND ARM
-        robot.leftArmMotorDeg(1, -1850, 0);
-        delay(1);
-        robot.rightArmMotorDeg(0.6, -3050, 0);
+        robot.move(8,.6);
         delay(0.5);
+        robot.leftArmMotorDeg(1, -225, 0);
+        delay(0.8);
         robot.rightHand.setPosition(.73);
+        robot.leftArmMotorDeg(1, 225, 0);
+        delay(1.5);
+        robot.rightArmMotorDeg(1, 750, 0);
+        robot.leftArmMotorDeg(1, -1900, 0);
+        robot.strafe(-22, .8);
+        robot.turnRight(77, 0.5);
+        robot.move(8, .8);
         delay(1);
-        robot.rightArmMotorDeg(0.6, 3050, 0);
-        //MOVE TO ASCENT ZONE
-        robot.turnRight(45, 0.5);
-        delay(1);
-        robot.strafe(-20, 0.7);
-        delay(1);
-        robot.move(-6, 0.5);
-        robot.leftArmMotorDeg(1, 800, 0);
-
+        robot.rightHand.setPosition(.37);
 
     }
 
