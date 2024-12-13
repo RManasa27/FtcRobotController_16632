@@ -68,6 +68,7 @@ public class Auto_Bucket_High extends LinearOpMode {
         // Autonomous Code - Call Methods Here
         waitForStart();
         putInBucketHigh();
+        moveToSampleOne();
 
         telemetry.addData("Status:", "Auto Finished");
         telemetry.update();
@@ -92,17 +93,21 @@ public class Auto_Bucket_High extends LinearOpMode {
         robot.leftArmMotorDeg(1, -225, 0);
         delay(0.8);
         robot.rightHand.setPosition(.73);
+        delay(0.5);
         robot.leftArmMotorDeg(1, 225, 0);
         delay(1.5);
         robot.rightArmMotorDeg(1, 750, 0);
         robot.leftArmMotorDeg(1, -1900, 0);
+
+
+    }
+    public void moveToSampleOne() {
         robot.move(-14, 1);
         robot.strafe(-22, .8);
         robot.turnRight(77, 0.5);
         robot.move(8, .8);
         delay(1);
         robot.rightHand.setPosition(.37);
-
     }
 
 
