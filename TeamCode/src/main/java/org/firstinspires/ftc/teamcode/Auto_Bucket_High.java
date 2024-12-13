@@ -69,6 +69,8 @@ public class Auto_Bucket_High extends LinearOpMode {
         waitForStart();
         putInBucketHigh();
         moveToSampleOne();
+        returnToBucket();
+        moveToSampleTwo();
 
 
         telemetry.addData("Status:", "Auto Finished");
