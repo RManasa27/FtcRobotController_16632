@@ -6,11 +6,26 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.util.Range;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name= "Overkill", group = "Training")
+@TeleOp(name= "SpRiNklEs", group = "Training")
 public class TeleopQuadField_Training2024 extends LinearOpMode {
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();
+
+    double rightHandPos = 0.37;
+
+
+    int sliderPos = 0;
+    int armPos = 0;
+
+    int rightClimbPos = 0;
+    int leftClimbPos = 0;
+
+    double SPEED_CONTROL = 1.0;
+    double ARM_SPEED = 0.8;
+    double SLIDER_SPEED = 0.8;
 
 
     @Override
@@ -28,11 +43,13 @@ public class TeleopQuadField_Training2024 extends LinearOpMode {
         robot.rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         robot.rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        robot.leftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.leftArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armPos = robot.leftArm.getCurrentPosition();
 
         robot.rightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sliderPos = robot.rightArm.getCurrentPosition();
 
 
 
@@ -58,12 +75,125 @@ public class TeleopQuadField_Training2024 extends LinearOpMode {
             double dy = gamepad1.left_stick_y;
             double dx = -gamepad1.left_stick_x;
 
-            if (gamepad1.options) {
+            if (gamepad1.left_bumper && gamepad1.right_bumper) {
                 imu.resetYaw();
             }
-            double leftPowerY = gamepad1.left_stick_y;      //find the value of y axis on the left joystick;
-            double leftPowerX = -gamepad1.left_stick_x;      //find the value of x axis on the left joystick;
-            double rightPowerX = gamepad1.right_stick_x;     //find the value of x axis on the right joystick;
+            double leftX = gamepad1.left_stick_x * SPEED_CONTROL;
+            double leftY = gamepad1.left_stick_y * SPEED_CONTROL;
+            double rightX = gamepad1.right_stick_x * SPEED_CONTROL;
+
+
+            if (gamepad2.dpad_up) {
+                SPEED_CONTROL = 1;
+            }
+            if (gamepad2.dpad_right) {
+                SPEED_CONTROL = 0.5;
+            }
+            if (gamepad2.dpad_down) {
+                SPEED_CONTROL = 0.25;
+            }
+            if (gamepad1.dpad_up) {
+                SPEED_CONTROL = 1;
+            }
+            if (gamepad1.dpad_right) {
+                SPEED_CONTROL = 0.5;
+            }
+            if (gamepad1.dpad_down) {
+                SPEED_CONTROL = 0.25;
+            }
+            if (gamepad2.left_bumper && gamepad2.right_bumper) {
+                SPEED_CONTROL = 0.05;
+            }
+            // Shoulder
+            double deltaArmPos = gamepad1.left_trigger - gamepad1.right_trigger;
+
+            if (Math.abs(deltaArmPos) > 0.1) {
+                robot.leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.leftArm.setPower(deltaArmPos);
+            }
+            else {
+                armPos = robot.leftArm.getCurrentPosition();
+                robot.leftArm.setTargetPosition(armPos);
+                robot.leftArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.leftArm.setPower(ARM_SPEED);
+            }
+
+            // Slider
+            if (gamepad1.y && robot.rightArm.getCurrentPosition() > -3000) {
+                robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.rightArm.setPower(-0.8);
+                sliderPos = robot.rightArm.getCurrentPosition();
+            }
+            else if (gamepad1.a) {
+                robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.rightArm.setPower(0.8);
+                sliderPos = robot.rightArm.getCurrentPosition();
+            }
+            else {
+                //sliderPos = robot.rightArm.getCurrentPosition();
+                robot.rightArm.setTargetPosition(sliderPos);
+                robot.rightArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.rightArm.setPower(SLIDER_SPEED);
+            }
+
+            //ClimbArms
+            double deltaRightClimb = gamepad2.left_trigger - gamepad2.right_trigger;
+
+            if (Math.abs(deltaRightClimb) > 0.1) {
+                robot.rightClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.rightClimbArm.setPower(deltaRightClimb);
+                robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.leftClimbArm.setPower(-deltaRightClimb);
+            }
+            else {
+                rightClimbPos = robot.rightClimbArm.getCurrentPosition();
+                robot.rightClimbArm.setTargetPosition(rightClimbPos);
+                robot.rightClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.rightClimbArm.setPower(ARM_SPEED);
+
+                leftClimbPos = robot.leftClimbArm.getCurrentPosition();
+                robot.leftClimbArm.setTargetPosition(leftClimbPos);
+                robot.leftClimbArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.leftClimbArm.setPower(ARM_SPEED);
+            }
+
+
+
+
+
+            //close grasper grad
+            if (gamepad1.right_bumper) {
+                rightHandPos-= 0.03;
+            }
+
+            if (gamepad2.b) {
+                rightHandPos-= 0.03;
+            }
+
+
+            //open grasper grad
+            if (gamepad1.left_bumper) {
+                rightHandPos+= 0.03;
+            }
+
+            if (gamepad2.x) {
+                rightHandPos+=0.03;
+            }
+
+
+
+            rightHandPos = Range.clip(rightHandPos, 0.37, 0.73);
+
+            if (sliderPos > 0) {
+                sliderPos = 0;
+            }
+
+            if (sliderPos < -3050) {
+                sliderPos = -3050;
+            }
+            double leftPowerY = gamepad1.left_stick_y * SPEED_CONTROL;      //find the value of y axis on the left joystick;
+            double leftPowerX = -gamepad1.left_stick_x * SPEED_CONTROL;      //find the value of x axis on the left joystick;
+            double rightPowerX = gamepad1.right_stick_x * SPEED_CONTROL;     //find the value of x axis on the right joystick;
 
             double angleR = Math.atan2(leftPowerY, leftPowerX)-(Math.PI/2); //Calculating angle of which the joystick is commanded to in radians
             double angleD = Math.toDegrees(angleR); //Calculating angle of which the joystick is commanded to in degrees
@@ -107,6 +237,22 @@ public class TeleopQuadField_Training2024 extends LinearOpMode {
             robot.leftRear.setPower(backLeftPower);
             robot.rightFront.setPower(frontRightPower);
             robot.rightRear.setPower(backRightPower);
+
+            telemetry.addData("Right hand:", rightHandPos);
+            telemetry.addData("SliderPos", sliderPos);
+            telemetry.addData("Speed:", SPEED_CONTROL);
+            telemetry.addData("Right Shoulder:", rightClimbPos);
+            telemetry.addData("Left Shoulder:", leftClimbPos);
+            telemetry.addData("Mid Arm:", armPos);
+
+            robot.rightHand.setPosition(rightHandPos);
+            robot.rightArm.setTargetPosition(sliderPos);
+
+            if (gamepad2.y && gamepad2.a) {
+                sliderPos = 0;
+            }
+
+
         }
 
 
