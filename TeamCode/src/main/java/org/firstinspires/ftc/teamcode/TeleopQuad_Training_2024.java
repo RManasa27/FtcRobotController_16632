@@ -32,6 +32,9 @@ public class    TeleopQuad_Training_2024 extends OpMode {
     double ARM_SPEED = 0.8;
     double SLIDER_SPEED = 0.8;
 
+    boolean isDown = true;
+
+
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -110,6 +113,9 @@ public class    TeleopQuad_Training_2024 extends OpMode {
         if (gamepad1.dpad_down) {
             SPEED_CONTROL = 0.25;
         }
+        if (gamepad1.dpad_left) {
+            sliderPos = 0;
+        }
         // Shoulder
         double deltaArmPos = gamepad1.left_trigger - gamepad1.right_trigger;
 
@@ -125,10 +131,32 @@ public class    TeleopQuad_Training_2024 extends OpMode {
         }
 
         // Slider
-        if (gamepad1.y && robot.rightArm.getCurrentPosition() > -3000) {
-            robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.rightArm.setPower(-0.8);
-            sliderPos = robot.rightArm.getCurrentPosition();
+        // Softstop Slider
+        if (robot.leftArm.getCurrentPosition() < 3500) { // Down
+            isDown = true;
+            if (robot.rightArm.getCurrentPosition() < -2000) {
+                sliderPos = -2000;
+            }
+        }
+        else {
+            isDown = false;
+        }
+
+        // Slider
+        if (gamepad1.y) {
+            if (isDown && robot.rightArm.getCurrentPosition() > -2000) {
+                robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.rightArm.setPower(-0.8);
+                sliderPos = robot.rightArm.getCurrentPosition();
+            }
+            else if (!isDown) {
+                robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.rightArm.setPower(-0.8);
+                sliderPos = robot.rightArm.getCurrentPosition();
+            }
+            else {
+                robot.rightArm.setPower(0);
+            }
         }
         else if (gamepad1.a) {
             robot.rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
