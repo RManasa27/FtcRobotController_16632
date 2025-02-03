@@ -122,7 +122,7 @@ public class Auto_Specimen_Double extends LinearOpMode {
         delay(1);
         robot.leftArmMotorDeg(1, 500, 0);
         robot.move(-10, 0.5);
-        robot.turnRight(152, 0.5);
+        robot.turnRight(160, 0.5);
         robot.leftArmMotorDeg(1, 800, 0);
         delay(1);
         robot.strafe(62, 0.5);
