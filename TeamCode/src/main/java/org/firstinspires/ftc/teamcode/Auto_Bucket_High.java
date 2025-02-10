@@ -103,8 +103,8 @@ public class Auto_Bucket_High extends LinearOpMode {
         robot.strafe(-12,0.4);
         robot.leftArmMotorDeg(1, -1800, 0);
         robot.turnRight(80, 0.5);
-        robot.strafe(-4,0.5);
-        robot.move(16, 0.6);
+        robot.strafe(-5,0.5);
+        robot.move(15, 0.6);
         delay(1);
         robot.leftArmMotorDeg(0.8, -220, 0);
         delay(0.4);
@@ -112,9 +112,10 @@ public class Auto_Bucket_High extends LinearOpMode {
         delay(0.4);
         robot.leftArmMotorDeg(0.8, 200,0);
         delay(0.3);
-        robot.turnLeft(80, 0.5);
-        robot.strafe(28, 0.6);
+        robot.turnLeft(88, 0.5);
         robot.leftArmMotorDeg(1, 1800, 0);
+        robot.strafe(28, 0.6);
+        delay(2);
         robot.move(6, 0.6);
         robot.rightArmMotorDeg(1, -750, 0);
         delay(1);
