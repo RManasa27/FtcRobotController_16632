@@ -140,6 +140,8 @@ public class    TeleopQuad_Training_2024 extends OpMode {
         }
         else {
             isDown = false;
+            if (robot.rightArm.getCurrentPosition() < -3050);
+            sliderPos = -3050;
         }
 
         // Slider
