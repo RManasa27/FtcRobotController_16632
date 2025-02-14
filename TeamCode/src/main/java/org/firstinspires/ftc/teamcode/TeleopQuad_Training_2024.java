@@ -134,14 +134,19 @@ public class    TeleopQuad_Training_2024 extends OpMode {
         // Softstop Slider
         if (robot.leftArm.getCurrentPosition() < 3500) { // Down
             isDown = true;
-            if (robot.rightArm.getCurrentPosition() < -2000) {
-                sliderPos = -2000;
-            }
+
         }
         else {
             isDown = false;
+        }
+        if (isDown = false) {
             if (robot.rightArm.getCurrentPosition() < -3050);
             sliderPos = -3050;
+        }
+        if (isDown = true) {
+            if (robot.rightArm.getCurrentPosition() < -2000) {
+                sliderPos = -2000;
+            }
         }
 
         // Slider
